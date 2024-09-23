@@ -1,5 +1,7 @@
+import { API_KEY } from './api_key.js';
+
 export const CONFIG = {
-  API_KEY: '560ef510af6920a52ae620f5c32210c1.zfZKzmQen3oSuTCg',
+  API_KEY: API_KEY,
   API_URL: 'https://open.bigmodel.cn'
 };
 

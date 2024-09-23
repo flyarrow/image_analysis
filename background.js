@@ -15,7 +15,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "extractImage") {
     chrome.storage.local.set({ extractedImageUrl: info.srcUrl }, () => {
       console.log('Image URL saved:', info.srcUrl);
-      // 发送消息给popup
       chrome.runtime.sendMessage({ action: 'imageExtracted', imageUrl: info.srcUrl });
     });
   }
