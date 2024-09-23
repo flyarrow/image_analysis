@@ -4,6 +4,7 @@ const CONFIG = {
 };
 
 chrome.runtime.onInstalled.addListener(() => {
+  console.log('Extension installed');
   chrome.contextMenus.create({
     id: "extractImage",
     title: "提取图片",
@@ -15,7 +16,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "extractImage") {
     chrome.storage.local.set({ extractedImageUrl: info.srcUrl }, () => {
       console.log('Image URL saved:', info.srcUrl);
-      chrome.runtime.sendMessage({ action: 'imageExtracted', imageUrl: info.srcUrl });
+      chrome.runtime.sendMessage({ action: 'imageExtracted', imageUrl: info.srcUrl }, (response) => {
+        if (chrome.runtime.lastError) {
+          console.error('Error sending message:', chrome.runtime.lastError);
+        }
+      });
     });
   }
 });
@@ -113,3 +118,7 @@ async function generateImage(prompt) {
   const data = await response.json();
   return data.data[0].url;
 }
+
+chrome.action.onClicked.addListener((tab) => {
+  chrome.tabs.create({ url: 'popup.html' });
+});

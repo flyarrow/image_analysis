@@ -22,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   analyzeButton.addEventListener('click', () => {
     if (currentImageUrl) {
       chrome.runtime.sendMessage({ action: 'analyzeImage', imageUrl: currentImageUrl }, (response) => {
-        if (response.success) {
+        if (chrome.runtime.lastError) {
+          console.error('Error sending message:', chrome.runtime.lastError);
+          alert('图片分析失败：' + chrome.runtime.lastError.message);
+        } else if (response.success) {
           displayPrompts(response.analysis);
         } else {
           console.error(response.error);
@@ -38,7 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const prompts = Array.from(promptList.children).map(li => li.textContent);
     const prompt = prompts.join(', ');
     chrome.runtime.sendMessage({ action: 'generateImage', prompt: prompt }, (response) => {
-      if (response.success) {
+      if (chrome.runtime.lastError) {
+          console.error('Error sending message:', chrome.runtime.lastError);
+          alert('图片生成失败：' + chrome.runtime.lastError.message);
+        } else if (response.success) {
         generatedImageUrl = response.imageUrl;
         generatedImage.src = generatedImageUrl;
       } else {
@@ -50,7 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   downloadOriginal.addEventListener('click', () => {
     if (currentImageUrl) {
-      chrome.downloads.download({ url: currentImageUrl });
+      chrome.downloads.download({ url: currentImageUrl }, (downloadId) => {
+        if (chrome.runtime.lastError) {
+          console.error('下载失败：', chrome.runtime.lastError);
+          alert('下载失败：' + chrome.runtime.lastError.message);
+        } else {
+          console.log('下载成功，ID：', downloadId);
+        }
+      });
     } else {
       alert('没有可下载的原图');
     }
@@ -58,7 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   downloadGenerated.addEventListener('click', () => {
     if (generatedImageUrl) {
-      chrome.downloads.download({ url: generatedImageUrl });
+      chrome.downloads.download({ url: generatedImageUrl }, (downloadId) => {
+        if (chrome.runtime.lastError) {
+          console.error('下载失败：', chrome.runtime.lastError);
+          alert('下载失败：' + chrome.runtime.lastError.message);
+        } else {
+          console.log('下载成功，ID：', downloadId);
+        }
+      });
     } else {
       alert('没有可下载的生成图');
     }

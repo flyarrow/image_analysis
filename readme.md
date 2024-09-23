@@ -24,11 +24,12 @@
 - 后端：使用JavaScript实现，调用智谱GLM的API
 - 前端：HTML和CSS构建用户界面
 - 主要文件：
-  - `manifest.json`: 插件配置文件
+  - `manifest.json`: 插件配置文件，包含所需权限和图标路径
   - `popup.html`: 插件面板的HTML结构
   - `popup.js`: 插件面板的交互逻辑
   - `background.js`: 后台脚本，处理API调用和图片提取
   - `styles.css`: 插件面板的样式
+  - `icons/`: 存放插件图标文件
 
 ## API使用说明
 
@@ -38,3 +39,12 @@
 2. CogView-3-Plus: 用于生成相似图片
 
 请确保在使用插件之前已经获取了必要的API密钥和访问权限。
+
+## 更新日志
+
+### v1.2
+
+- 修复了下载图片功能的错误
+- 添加了错误处理机制，确保消息发送和接收的稳定性
+- 更新了 `background.js` 和 `popup.js` 文件，确保所有消息都有相应的接收端
+- 确保 `manifest.json` 文件中正确配置了 `background` 和 `permissions`

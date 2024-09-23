@@ -1,21 +1,28 @@
 {
   "manifest_version": 3,
   "name": "图片分析与生成插件",
-  "version": "1.1.1",
-  "description": "分析网页图片并生成相似图片的谷歌浏览器插件",
+  "version": "1.0",
+  "description": "一个用于图片分析和生成的Chrome插件",
   "permissions": [
-    "contextMenus",
+    "storage",
     "activeTab",
-    "storage"
-  ],
-  "host_permissions": [
-    "https://open.bigmodel.cn/*"
+    "downloads",
+    "contextMenus"
   ],
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   }
 }
