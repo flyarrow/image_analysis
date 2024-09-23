@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "图片分析与生成插件",
+  "version": "1.0.0",
+  "description": "分析网页图片并生成相似图片的谷歌浏览器插件",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://open.bigmodel.cn/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

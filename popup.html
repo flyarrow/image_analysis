@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片分析与生成</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="imageContainer">
+            <img id="extractedImage" alt="提取的图片" />
+        </div>
+        <div id="imageUrlDisplay"></div> <!-- 用于显示图片URL -->
+        <div id="promptContainer">
+            <h3>提示词：</h3>
+            <ul id="promptList"></ul>
+        </div>
+        <div id="buttonContainer">
+            <button id="analyzeButton">分析图片</button>
+            <button id="generateButton">生成相似图片</button>
+            <button id="downloadOriginal">下载原图</button>
+            <button id="downloadGenerated">下载生成图</button>
+        </div>
+        <div id="generatedImageContainer">
+            <img id="generatedImage" alt="生成的图片" />
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

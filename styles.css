@@ -1,0 +1,42 @@
+body {
+    width: 300px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+#imageContainer, #generatedImageContainer {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+}
+
+#extractedImage, #generatedImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#promptContainer {
+    margin-bottom: 10px;
+}
+
+#promptList {
+    padding-left: 20px;
+    margin: 0;
+}
+
+#buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+button {
+    flex: 1 0 45%;
+    padding: 5px;
+    cursor: pointer;
+}
